@@ -5,6 +5,13 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Replace '*' with your allowed origins
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
 // Connect to MongoDB Atlas
 mongoose.connect('mongodb+srv://rescue:rescue123@cluster0.0xsgsho.mongodb.net/Pearl', {
   useNewUrlParser: true,
